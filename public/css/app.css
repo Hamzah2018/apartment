@@ -1,4 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+/* @import url(https://fonts.googleapis.com/css?family=Nunito); */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Roboto:wght@100;300;400;500&display=swap');
+:root {
+
+    --light-color:#ffffe0;
+    --dark-color: #200202;
+    --dark-color: #200202;
+    --green-color: #6d7b7b;
+    --red-color: #ff3150;
+    --yellow-color: #ffc400;
+    --section-color: #F4F7F6;
+      direction: rtl;
+      --bs-font-sans-serif: "Cairo", sans-serif;
+      --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+      --bs-body-font-family: var(--bs-font-sans-serif);
+      --bs-body-font-size: 0.9rem;
+      --bs-body-font-weight: 400;
+      --bs-body-line-height: 1.6;
+      --bs-body-color: #212529;
+      --bs-body-bg:var(--light-color);
+      font-family: 'Cairo', sans-serif !important;
+  }
+
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -6,7 +28,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+/* :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -49,8 +71,8 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 248, 250, 252;
-  --bs-font-sans-serif: "Nunito", sans-serif;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-sans-serif: "Cairo", sans-serif;
+  --bs-font-monospace: "Cairo", sans-serif,SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 0.9rem;
@@ -58,7 +80,7 @@
   --bs-body-line-height: 1.6;
   --bs-body-color: #212529;
   --bs-body-bg: #f8fafc;
-}
+} */
 
 *,
 *::before,
@@ -85,6 +107,19 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+nav{
+    background-color: var(--dark-color);
+}
+.navbar {
+    background-color: var(--dark-color);
+    direction: rtl;
+
+
+  }
+  .navbar .navbar-nav .nav-link {
+    color: white;
+    direction: rtl;
+  }
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -10271,3 +10306,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.main-btn {
+    background-color: var(--red-color);
+    color: var(--yellow-color);
+    padding: 0.5rem 1rem;
+  }
+  .card-body{
+    direction: rtl;
+  }
+  .card-header{
+    background-color: var(  --yellow-color);
+    text-align: center;
+    padding: auto;
+    border-top:4px;
+  }
