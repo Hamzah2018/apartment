@@ -34,9 +34,10 @@ class UsersController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        return view('users.protfile',['user'=> $user]);
     }
 
     public function update(Request $request, $id)

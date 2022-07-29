@@ -5,6 +5,10 @@ use App\Models\Apartment;
 use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use App\Traits\UploadsImageTrait;
+// use Illuminate\Support\Facedes\DB;
+use Illuminate\Support\Facades\DB;
+
 
 class ApartmentsController extends Controller
 {
@@ -13,6 +17,7 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    use UploadsImageTrait;
     public function index()
     {
         //
@@ -41,13 +46,27 @@ class ApartmentsController extends Controller
     {
         //
         // $input = $request->all();
-        Apartment::create(
-            $request->all(),
+      //  $path = $this->uploadImage($request,'apartment');
+        // Apartment::create([
+        //     'address' => $request->address,
+        //     'apartment_type' => $request->apartment_type,
+        //     'size' => $request->size,
+        //     'rooms_number'=> $request->rooms_number,
+        //     'bathroms_number' => $request->bathroms_number,
+        //     'apartment_description'=> $request->apartment_description,
+        //     'start_at'=> $request->start_at,
+        //     'end_at'=> $request->end_at,
+        //     'rent_cyclic'=> $request->rent_cyclic,
+        //     'price_of_rent'=> $request->price_of_rent,
+        //     'number_presenter_payment'=> $request->number_presenter_payment,
+        //     'user_id'=> $request->user_id,]
+        //     // $request->all(),
+        //     // // 'photo'-> $path,
+        //     // // 'user_id'->$request->id,
+        //  );
+        // DB::beginTransaction();
+        DB::beginTransaction();
 
-            // 'user_id'->$request->id,
-         );
-
-/*
          $apartments = new  Apartment();
          $apartments->address = $request->address;
          $apartments->apartment_type = $request->apartment_type;
@@ -61,28 +80,30 @@ class ApartmentsController extends Controller
          $apartments->price_of_rent = $request->price_of_rent;
          $apartments->number_presenter_payment = $request->number_presenter_payment;
          $apartments->user_id = $request->user_id;
+         $apartments->save();
 
-*/
         // return redirect('student')->with('flash_message', 'Student Addedd!');
         // return response('تمامة الاضافه بنجاح');
 
     //       insert image
-        $apartments = new  Apartment();
+        // $apartments = new  Apartment();
+
         if($request->hasFile('images')){
 
             foreach($request->file('images') as $file){
                 $name = $file->getClientOriginalName();
                 // $file->storeAs('');
                 $file->storeAs('attachments/apartments/'.$apartments->name,$file->getClientOriginalName(),'upload_attachments');
-            $images = new image();
+            $images = new Image();
             $images->filename = $name;
             $images->imageable_id = $apartments->id;
             $images->imageable_type = 'App\Models\apartment';
             $images->save();
         }
     }
+    DB::commit();
 
-        session()->flash('Add', 'تم اضافة المنتج بنجاح ');
+        session()->flash('Add', 'تم اضافة الشقه بنجاح ');
         return redirect('/apartment');
 
     }
@@ -149,6 +170,10 @@ class ApartmentsController extends Controller
         ]);
         session()->flash('edit','تم تعديل الباينات بنجاج');
         return redirect('/apartment');
+    }
+    public function show($id){
+        
+        return $id;
     }
     public function destroy(Request $request)
     {

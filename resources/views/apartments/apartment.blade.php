@@ -189,7 +189,8 @@
                                                 data-address="{{ $apartment->address }}" data-toggle="modal"
                                                 data-size="{{ $apartment->size }}" data-toggle="modal"
                                                 data-target="#modaldemo9">حذف</button>
-                                </td>
+                                                <a href="{{route('Apartments.show',$apartment->id)}}" class="btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
+                                            </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -295,7 +296,7 @@
                                         <div class="form-group">
                                       <label for=""> صور لشقه <span class ="text-danger">k</span>
                                          {{-- <input type="file" accept= "image/*" name="photo[]" multiple> --}}
-                                        <input type="file" id="img" name="images" accept="image/*" multiple>
+                                        <input type="file" id="img" name="images[]" accept="image/*" multiple>
 
 
 									<div class="form-group mb-0 justify-content-end">
