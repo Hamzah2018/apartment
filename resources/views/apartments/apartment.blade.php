@@ -189,7 +189,7 @@
                                                 data-address="{{ $apartment->address }}" data-toggle="modal"
                                                 data-size="{{ $apartment->size }}" data-toggle="modal"
                                                 data-target="#modaldemo9">حذف</button>
-                                                <a href="{{route('Apartments.show',$apartment->id)}}" class="btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
+                                                <a href="{{route('apartment.show',$apartment->id)}}" class="btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
                                             </td>
                             </tr>
                             @endforeach

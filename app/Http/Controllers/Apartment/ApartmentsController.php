@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\UploadsImageTrait;
 // use Illuminate\Support\Facedes\DB;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ApartmentsController extends Controller
@@ -113,7 +114,7 @@ class ApartmentsController extends Controller
      *
      * @param  \App\Models\apartments  $apartments
      * @return \Illuminate\Http\Response
-    //  */
+    */
     // public function show(apartments $apartments)
     // {
     //     //
@@ -171,10 +172,49 @@ class ApartmentsController extends Controller
         session()->flash('edit','تم تعديل الباينات بنجاج');
         return redirect('/apartment');
     }
+
     public function show($id){
-        
-        return $id;
+        $apartment = Apartment::findorfail($id);
+        $user = User::all();
+        // return $Apartment;
+        // compact( ['apartments','user'])
+        return view('apartments.show',compact( ['apartment','user']));
+    }  
+    public function Upload_attachment(Request $request)
+    {
+        foreach($request->file('images') as $file)
+        {
+            $name = $file->getClientOriginalName();
+            $file->storeAs('attachments/apartments/'.$request->address, $file->getClientOriginalName(),'upload_attachments');
+
+            // insert in image_table
+            $images= new image();
+            $images->filename=$name;
+            $images->imageable_id = $request->id;
+            $images->imageable_type = 'App\Models\apartment';
+            $images->save();
+        }
+        session()->flash('uploaded','تم الرفع بنجاح');
+        return back();
+        // return redirect()->route('apartments',$request->id);
     }
+
+    public function Download_attachment($Apartmentaddress,$filename)
+    {
+         return response()->download(public_path('attachments/apartments/'.$Apartmentaddress.'/'.$filename));
+        //  return $name;
+    }
+    public function Delete_attachment(Request $request)
+    {
+        // Delete img in server disk
+        Storage::disk('upload_attachments')->delete('attachments/apartments/'.$request->address.'/'.$request->filename);
+
+        // Delete in data
+        image::where('id',$request->id)->where('filename',$request->filename)->delete();
+        // session()->flash('delete','تم الرفع بنجاح');
+         return back();
+    }
+
     public function destroy(Request $request)
     {
         //

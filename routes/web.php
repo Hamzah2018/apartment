@@ -30,8 +30,17 @@ use Illuminate\Support\Facades\Auth;
 //     Storage::disk('public')->put('ex.txt','Hamzah 2');
 //     return 'success';
 // });
+
+# *** ########### Apartments Routes ###################
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('apartment', ApartmentsController::class);
+Route::post('Upload_attachment', [ApartmentsController::class,'Upload_attachment'])->name('Upload_attachment');
+Route::get('Download_attachment/{Apartmentaddress}/{filename}', [ApartmentsController::class,'Download_attachment'])->name('Download_attachment');
+Route::post('Delete_attachment', [ApartmentsController::class, 'Delete_attachment'])->name('Delete_attachment');
+
+// Route::get('apartment/show',['apartment', ApartmentsController::class,'show'])->name('apartment.show');
 Route::resource('apartmentbroker', ApartmentsBokerController::class);
 Route::resource('users', UsersController::class);
 Auth::routes();
