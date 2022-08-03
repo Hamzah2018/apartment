@@ -2,13 +2,16 @@
 /public/hot
 /public/storage
 /storage/*.key
-views/
-!apartments/
-!apartmentsBoker/
-!auth/
-!layouts/
-!users/
+
+/resources/views/
+!/apartments
+!/apartmentsBoker/
+!/auth/
+!/layouts/
+!/users/
 !home.balde.php
+!dashboard.blade.php
+!dashboardboker.blade.php
 /vendor
 
 .env
