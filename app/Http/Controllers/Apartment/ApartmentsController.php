@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Apartment;
 use App\Http\Controllers\Controller;
-use App\Models\Apartment;
+use App\Models\apartment;
 use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ApartmentsController extends Controller
     public function index()
     {
         //
-        $apartments = Apartment::all();
+        $apartments = apartment::all();
         $user = User::all();
         return view('apartments.apartment',compact( ['apartments','user']));
     }
@@ -179,7 +179,7 @@ class ApartmentsController extends Controller
         // return $Apartment;
         // compact( ['apartments','user'])
         return view('apartments.show',compact( ['apartment','user']));
-    }  
+    }
     public function Upload_attachment(Request $request)
     {
         foreach($request->file('images') as $file)
