@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
 
     public function run()
     {
-        // 1
+        // 1 php artisan db:seed --class=UserSeeder
         $user = DB::table('users')->where
         ('email','hamzah@gmail.com')->first();
         if(! $user){

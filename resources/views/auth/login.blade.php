@@ -1,4 +1,4 @@
-@extends('layouts.master2')
+@extends('admin.layouts.master2')
 
 @section('title')
 تسجيل الدخول-

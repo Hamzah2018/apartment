@@ -6,10 +6,9 @@ use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Traits\UploadsImageTrait;
-// use Illuminate\Support\Facedes\DB;
+// use Illuminate\Support\Facedes\DB;ئ
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
 
 class ApartmentsController extends Controller
 {
@@ -24,7 +23,7 @@ class ApartmentsController extends Controller
         //
         $apartments = apartment::all();
         $user = User::all();
-        return view('apartments.apartment',compact( ['apartments','user']));
+        return view('admin.apartments.apartment',compact( ['apartments','user']));
     }
 
     /**
@@ -37,35 +36,10 @@ class ApartmentsController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+//  public function store(ApartmentRequest $request)
     public function store(Request $request)
     {
-        //
-        // $input = $request->all();
-      //  $path = $this->uploadImage($request,'apartment');
-        // Apartment::create([
-        //     'address' => $request->address,
-        //     'apartment_type' => $request->apartment_type,
-        //     'size' => $request->size,
-        //     'rooms_number'=> $request->rooms_number,
-        //     'bathroms_number' => $request->bathroms_number,
-        //     'apartment_description'=> $request->apartment_description,
-        //     'start_at'=> $request->start_at,
-        //     'end_at'=> $request->end_at,
-        //     'rent_cyclic'=> $request->rent_cyclic,
-        //     'price_of_rent'=> $request->price_of_rent,
-        //     'number_presenter_payment'=> $request->number_presenter_payment,
-        //     'user_id'=> $request->user_id,]
-        //     // $request->all(),
-        //     // // 'photo'-> $path,
-        //     // // 'user_id'->$request->id,
-        //  );
-        // DB::beginTransaction();
+
         DB::beginTransaction();
 
          $apartments = new  Apartment();
@@ -109,28 +83,18 @@ class ApartmentsController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-    */
+
     // public function show(apartments $apartments)
     // {
     //     //
     // }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\apartments  $apartments
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $apartments = Apartment::findorFail($id);
         $user = User::all();
-        return view('apartments.edit' ,compact ('apartments','user'));
+        return view('admin.apartments.edit' ,compact ('apartments','user'));
         // return  $id;
             //  return response('id');
     }
@@ -178,7 +142,7 @@ class ApartmentsController extends Controller
         $user = User::all();
         // return $Apartment;
         // compact( ['apartments','user'])
-        return view('apartments.show',compact( ['apartment','user']));
+        return view('admin.apartments.show',compact( ['apartment','user']));
     }
     public function Upload_attachment(Request $request)
     {
@@ -200,9 +164,9 @@ class ApartmentsController extends Controller
     }
 
     public function Download_attachment($Apartmentaddress,$filename)
-    {
+    {                                                               //'.$Apartmentaddress.
          return response()->download(public_path('attachments/apartments/'.$Apartmentaddress.'/'.$filename));
-        //  return $name;
+        //  return $name;f
     }
     public function Delete_attachment(Request $request)
     {

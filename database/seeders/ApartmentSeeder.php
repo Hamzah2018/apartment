@@ -14,7 +14,6 @@ class ApartmentSeeder extends Seeder
      */
     public function run()
     {
-        //
           //php artisan db:seed --class=ApartmentSeeder
           Apartment::create([
             'address' => 'جولة الكميم',
