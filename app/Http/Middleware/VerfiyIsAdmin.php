@@ -13,7 +13,7 @@ class VerfiyIsAdmin
         if(Auth::user()->role !== 'admin'){
             // return redirect(route('/home'));
             // Auth::logout();
-            return redirect()->route('admin.dashboardboker');
+            return redirect()->route('dashboardboker');
         }
         return $next($request);
     }

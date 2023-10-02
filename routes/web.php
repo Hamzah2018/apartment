@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Router\Illuminate\Routing\RouteRegistrar;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // use App\Http\Middleware\VerfiyIsAdmin;
 
@@ -35,6 +36,11 @@ use Illuminate\Routing\Router\Illuminate\Routing\RouteRegistrar;
 // });
 
 # *** ########### Apartments Routes ###################
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -42,6 +48,11 @@ Route::resource('apartment', ApartmentsController::class);
 Route::post('Upload_attachment', [ApartmentsController::class,'Upload_attachment'])->name('Upload_attachment');
 Route::get('Download_attachment/{Apartmentaddress}/{filename}', [ApartmentsController::class,'Download_attachment'])->name('Download_attachment');
 Route::post('Delete_attachment', [ApartmentsController::class, 'Delete_attachment'])->name('Delete_attachment');
+
+
+    });
+
+
 
 # ***** ################## chat ################### **** #
 Route::resource('chat', ChatController::class);
@@ -79,6 +90,7 @@ Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['Verf
 Route::get('/dashboardboker',[BokerDashboardController::class,'index'])->name('dashboardboker');
 //Route::get('users', [App\Http\Controllers\UsersController::class, 'index']);
 // Route::get('/{page}', 'AdminController@index');
+
 Route::get('/{page}',[AdminController::class,'index']);
 
 //profile
@@ -89,3 +101,7 @@ Route::get('/{page}',[AdminController::class,'index']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Storage::disk('local')->put('example.txt', 'Contents');
+
+
+
+

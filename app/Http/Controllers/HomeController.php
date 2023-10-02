@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,15 +16,11 @@ class HomeController extends Controller
     {
         // $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
+        $apartments = Apartment::all();
+
         $user = User::all();
-        return view('web.home' , compact( 'user'));
+        return view('web.home' , compact( 'user','apartments'));
     }
 }

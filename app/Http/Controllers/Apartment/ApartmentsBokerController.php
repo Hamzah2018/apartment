@@ -19,14 +19,13 @@ class ApartmentsBokerController extends Controller
     {
         //
         $user = Auth::user();
-        // $apartments = Apartment::find($user()->id);
-        // $apartments = Apartment::
+        // $user = User::all();
 
         $apartments = DB::table('apartments')
-        ->where('apartments->user_id', Auth::user()->id)
+        ->where('user_id', Auth::user()->id)
         ->get();
 
-        return view('apartmentsBoker.apartmentbroker',compact( ['apartments','user']));
+        return view('admin.apartmentsBoker.apartmentbroker',compact( ['apartments','user']));
     }
 
     public function create()

@@ -23,6 +23,7 @@ class ApartmentsController extends Controller
         //
         $apartments = apartment::all();
         $user = User::all();
+
         return view('admin.apartments.apartment',compact( ['apartments','user']));
     }
 

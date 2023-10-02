@@ -25,6 +25,6 @@ class BokerDashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboardboker');
+        return view('admin.dashboardboker');
     }
 }
